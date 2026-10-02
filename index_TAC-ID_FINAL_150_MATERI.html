@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TAC-ID • Technology Astronomy Science</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#090018;
+  color:#fff;
+  font-family:Arial,Helvetica,sans-serif;
+  overflow-x:hidden;
+}
+
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 20% 20%,rgba(139,92,246,.12),transparent 30%),
+    radial-gradient(circle at 80% 70%,rgba(168,85,247,.1),transparent 30%);
+  z-index:-1;
+}
+
+/* HEADER */
+header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  padding:18px 7%;
+  background:rgba(9,0,24,.85);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid rgba(168,85,247,.2);
+}
+
+.nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  font-size:25px;
+  font-weight:900;
+  letter-spacing:3px;
+}
+
+.logo span{
+  color:#a855f7;
+}
+
+nav a{
+  color:#cbd5e1;
+  text-decoration:none;
+  margin-left:22px;
+  font-size:14px;
+}
+
+nav a:hover{
+  color:#c084fc;
+}
+
+/* HERO */
+.hero{
+  min-height:88vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:80px 20px;
+  position:relative;
+}
+
+.stars{
+  position:absolute;
+  inset:0;
+  background-image:
+    radial-gradient(circle,#fff 1px,transparent 1px),
+    radial-gradient(circle,#a855f7 1px,transparent 1px);
+  background-size:90px 90px,170px 170px;
+  opacity:.2;
+}
+
+.hero-content{
+  position:relative;
+  max-width:850px;
+}
+
+.badge{
+  display:inline-block;
+  padding:12px 22px;
+  border:1px solid rgba(168,85,247,.4);
+  border-radius:30px;
+  background:rgba(88,28,135,.18);
+  color:#c084fc;
+  margin-bottom:30px;
+}
+
+.hero h1{
+  font-size:clamp(48px,10vw,92px);
+  line-height:1;
+  margin-bottom:25px;
+}
+
+.hero h1 span{
+  background:linear-gradient(90deg,#e9d5ff,#a855f7,#d8b4fe);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.hero p{
+  color:#aaa3b8;
+  font-size:18px;
+  line-height:1.8;
+  max-width:700px;
+  margin:auto;
+}
+
+.buttons{
+  margin-top:35px;
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  border:0;
+  padding:15px 28px;
+  border-radius:14px;
+  color:white;
+  background:linear-gradient(135deg,#9333ea,#7c3aed);
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+  text-decoration:none;
+}
+
+.btn.secondary{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(168,85,247,.35);
+}
+
+/* CONTENT */
+section.content{
+  padding:80px 7%;
+}
+
+.title{
+  text-align:center;
+  margin-bottom:45px;
+}
+
+.title h2{
+  font-size:38px;
+  margin-bottom:10px;
+}
+
+.title p{
+  color:#8f879d;
+}
+
+/* CARDS */
+.grid{
+  max-width:1100px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+
+.card{
+  padding:28px;
+  border-radius:22px;
+  background:rgba(22,8,42,.8);
+  border:1px solid rgba(168,85,247,.2);
+  transition:.3s;
+}
+
+.card:hover{
+  transform:translateY(-7px);
+  border-color:#a855f7;
+  box-shadow:0 15px 40px rgba(126,34,206,.18);
+}
+
+.icon{
+  font-size:38px;
+  margin-bottom:18px;
+}
+
+.card h3{
+  color:#d8b4fe;
+  font-size:23px;
+  margin-bottom:12px;
+}
+
+.card p{
+  color:#aaa3b8;
+  line-height:1.7;
+}
+
+/* STATS */
+.stats{
+  max-width:1100px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+
+.stat{
+  text-align:center;
+  padding:35px 20px;
+  border:1px solid rgba(168,85,247,.2);
+  border-radius:22px;
+  background:#100521;
+}
+
+.stat strong{
+  display:block;
+  font-size:42px;
+  color:#c084fc;
+  margin-bottom:8px;
+}
+
+.stat span{
+  color:#91899b;
+}
+
+/* ABOUT */
+.about{
+  max-width:900px;
+  margin:auto;
+  padding:35px;
+  border-radius:25px;
+  background:rgba(22,8,42,.8);
+  border:1px solid rgba(168,85,247,.2);
+}
+
+.about p{
+  color:#aaa3b8;
+  line-height:1.9;
+  font-size:16px;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:50px 20px;
+  border-top:1px solid rgba(168,85,247,.15);
+  color:#756d80;
+}
+
+footer strong{
+  color:#a855f7;
+}
+
+/* MOBILE */
+@media(max-width:700px){
+
+  header{
+    padding:16px 20px;
+  }
+
+  nav{
+    display:none;
+  }
+
+  .hero{
+    min-height:85vh;
+  }
+
+  .hero h1{
+    font-size:52px;
+  }
+
+  .hero p{
+    font-size:16px;
+  }
+
+  section.content{
+    padding:65px 20px;
+  }
+
+  .title h2{
+    font-size:31px;
+  }
+}
+
+/* MATERIAL LIBRARY */
+.material-library{max-width:1100px;margin:auto}
+.material-tools{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:25px}
+.material-tools input{flex:1 1 280px;padding:14px 16px;border-radius:14px;border:1px solid rgba(168,85,247,.3);background:#100521;color:#fff;outline:none;font-size:15px}
+.material-tools input:focus{border-color:#a855f7;box-shadow:0 0 0 3px rgba(168,85,247,.1)}
+.filter-btn{padding:12px 16px;border-radius:12px;border:1px solid rgba(168,85,247,.3);background:#100521;color:#ddd;cursor:pointer;transition:.2s;font-size:14px}
+.filter-btn:hover{border-color:#a855f7;color:#fff}
+.filter-btn.active{background:#7c3aed;color:#fff;border-color:#9333ea}
+.material-count{text-align:center;color:#8f879d;margin-bottom:20px}
+.material-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.material-item{padding:22px;border-radius:20px;background:rgba(22,8,42,.8);border:1px solid rgba(168,85,247,.2);cursor:pointer;transition:.25s;display:flex;flex-direction:column;min-height:210px}
+.material-item:hover{transform:translateY(-5px);border-color:#a855f7;box-shadow:0 12px 30px rgba(126,34,206,.12)}
+.material-item small{color:#c084fc;font-weight:bold;letter-spacing:.4px}
+.material-item h3{margin:8px 0 10px;color:#fff;font-size:20px}
+.material-item p{color:#aaa3b8;line-height:1.6;font-size:14px;flex:1}
+.material-read{display:inline-block;margin-top:16px;color:#c084fc;font-size:14px;font-weight:bold}
+.material-empty{text-align:center;color:#8f879d;padding:40px 20px;grid-column:1/-1;border:1px dashed rgba(168,85,247,.25);border-radius:20px}
+.material-modal{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.78);align-items:center;justify-content:center;padding:20px}
+.material-modal.show{display:flex}
+.material-box{max-width:720px;width:100%;max-height:85vh;overflow:auto;padding:30px;border-radius:24px;background:#100521;border:1px solid rgba(168,85,247,.4);box-shadow:0 20px 60px rgba(0,0,0,.45);position:relative}
+.material-close{position:absolute;right:18px;top:12px;background:none;border:0;color:#fff;font-size:32px;line-height:1;cursor:pointer}
+.material-close:hover{color:#c084fc}
+.material-box small{color:#c084fc;font-weight:bold}
+.material-box h2{font-size:30px;margin:8px 40px 0 0;color:#fff}
+.material-body{margin-top:18px}
+.material-body p{color:#cbd5e1;line-height:1.8;margin:0 0 16px}
+.material-body p:last-child{margin-bottom:0}
+@media(max-width:700px){
+  .material-tools{align-items:stretch}
+  .material-tools input{flex-basis:100%}
+  .filter-btn{flex:1 1 calc(50% - 10px)}
+  .material-grid{grid-template-columns:1fr}
+  .material-box{padding:24px 20px;max-height:88vh}
+  .material-box h2{font-size:25px}
+}
+.material-library{max-width:1100px;margin:auto}.material-tools{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:25px}.material-tools input{flex:1 1 280px;padding:14px 16px;border-radius:14px;border:1px solid rgba(168,85,247,.3);background:#100521;color:#fff;outline:none}.filter-btn{padding:12px 16px;border-radius:12px;border:1px solid rgba(168,85,247,.3);background:#100521;color:#ddd;cursor:pointer}.filter-btn.active{background:#7c3aed;color:#fff}.material-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}.material-item{padding:22px;border-radius:20px;background:rgba(22,8,42,.8);border:1px solid rgba(168,85,247,.2);cursor:pointer;transition:.25s}.material-item:hover{transform:translateY(-5px);border-color:#a855f7}.material-item small{color:#c084fc}.material-item h3{margin:8px 0}.material-item p{color:#aaa3b8;line-height:1.6}.material-count{text-align:center;color:#8f879d;margin-bottom:20px}.material-modal{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.75);align-items:center;justify-content:center;padding:20px}.material-modal.show{display:flex}.material-box{max-width:650px;width:100%;padding:30px;border-radius:24px;background:#100521;border:1px solid rgba(168,85,247,.4)}.material-box button{float:right;background:none;border:0;color:#fff;font-size:28px;cursor:pointer}.material-box p{color:#cbd5e1;line-height:1.8;margin-top:15px}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">TAC-<span>ID</span></div>
+
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#materi">Materi</a>
+      <a href="#tentang">Tentang</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="hero" id="home">
+  <div class="stars"></div>
+
+  <div class="hero-content">
+
+    <div class="badge">
+      📚 PERPUSTAKAAN DIGITAL TAC
+    </div>
+
+    <h1>
+      Explore.<br>
+      <span>Learn. Discover.</span>
+    </h1>
+
+    <p>
+      TAC-ID adalah perpustakaan digital untuk mempelajari
+      Technology, Astronomy & Science secara sederhana,
+      terstruktur, dan mudah dipahami.
+    </p>
+
+    <div class="buttons">
+      <a class="btn" href="#materi">🚀 Mulai Eksplorasi</a>
+      <a class="btn secondary" href="#tentang">ℹ️ Tentang TAC</a>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="content" id="materi">
+
+  <div class="title">
+    <h2>Jelajahi Materi</h2>
+    <p>Pilih bidang yang ingin kamu pelajari.</p>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="icon">🌌</div>
+      <h3>Astronomy</h3>
+      <p>
+        Pelajari tata surya, planet, bintang, galaksi,
+        black hole, misi luar angkasa, dan berbagai
+        fenomena alam semesta.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="icon">🤖</div>
+      <h3>Technology</h3>
+      <p>
+        Kenali perkembangan teknologi modern,
+        kecerdasan buatan, komputer, smartphone,
+        energi, dan berbagai inovasi terbaru.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="icon">🔬</div>
+      <h3>Science</h3>
+      <p>
+        Pelajari konsep-konsep sains seperti fisika,
+        kimia, biologi, serta berbagai fenomena
+        ilmiah di sekitar kita.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<section class="content" id="perpustakaan">
+  <div class="title"><h2>Perpustakaan Materi</h2><p>Cari dan buka materi TAC-ID.</p></div>
+  <div class="material-library">
+    <div class="material-tools">
+      <input id="materialSearch" placeholder="🔎 Cari materi...">
+      <button class="filter-btn active" data-filter="All">Semua</button>
+      <button class="filter-btn" data-filter="Astronomy">🌌 Astronomy</button>
+      <button class="filter-btn" data-filter="Technology">🤖 Technology</button>
+      <button class="filter-btn" data-filter="Science">🔬 Science</button>
+    </div>
+    <div class="material-count" id="materialCount"></div>
+    <div class="material-grid" id="materialGrid"></div>
+  </div>
+</section>
+
+<section class="content">
+
+  <div class="title">
+    <h2>TAC dalam Angka</h2>
+    <p>Perjalanan perpustakaan digital TAC.</p>
+  </div>
+
+  <div class="stats">
+
+    <div class="stat">
+      <strong>50</strong>
+      <span>Materi Astronomy</span>
+    </div>
+
+    <div class="stat">
+      <strong>50</strong>
+      <span>Materi Technology</span>
+    </div>
+
+    <div class="stat">
+      <strong>50</strong>
+      <span>Materi Science</span>
+    </div>
+
+    <div class="stat">
+      <strong>V1.0</strong>
+      <span>Versi Website</span>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="content" id="tentang">
+
+  <div class="title">
+    <h2>Tentang TAC-ID</h2>
+  </div>
+
+  <div class="about">
+
+    <p>
+      TAC merupakan singkatan dari
+      <b>Technology & Astronomy Creator</b>.
+      TAC-ID dibuat sebagai ruang edukasi digital
+      yang membahas teknologi, astronomi, dan sains
+      dengan bahasa yang sederhana dan mudah dipahami.
+    </p>
+
+    <br>
+
+    <p>
+      Tujuannya adalah membuat informasi yang terlihat
+      rumit menjadi lebih menarik, terstruktur, dan
+      mudah dipelajari oleh siapa saja.
+    </p>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<footer>
+  <strong>TAC-ID</strong><br>
+  Technology • Astronomy • Science<br><br>
+  One Place For Technology, Astronomy & Science
+</footer>
+
+
+<div class="material-modal" id="materialModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="material-box">
+    <button class="material-close" id="closeMaterial" aria-label="Tutup materi">×</button>
+    <small id="modalCat"></small>
+    <h2 id="modalTitle"></h2>
+    <div class="material-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+const materials = [{"category":"Astronomy","title":"Tata Surya","content":"Tata Surya adalah sistem dengan Matahari sebagai pusat massa utama, dikelilingi planet, planet kerdil, satelit, asteroid, komet, dan benda kecil lainnya. Delapan planet mengorbit Matahari pada jarak dan karakter yang berbeda. Sebagian besar massa sistem ini berada pada Matahari, sementara gaya gravitasi mengatur gerak benda-benda di dalamnya."},{"category":"Astronomy","title":"Merkurius","content":"Merkurius adalah planet terdekat dengan Matahari dan planet terkecil di Tata Surya. Permukaannya berbatu dan penuh kawah, sementara atmosfernya sangat tipis sehingga suhu permukaan dapat berubah ekstrem. Merkurius tidak memiliki satelit alami dan menyelesaikan satu orbit Matahari dalam waktu sekitar 88 hari Bumi."},{"category":"Astronomy","title":"Venus","content":"Venus adalah planet kedua dari Matahari dan ukurannya mirip Bumi. Atmosfernya sangat tebal, didominasi karbon dioksida, sehingga menghasilkan efek rumah kaca yang sangat kuat dan menjadikannya planet terpanas di Tata Surya. Awan asam sulfat menutupi permukaannya sehingga permukaan Venus sulit diamati langsung dari luar."},{"category":"Astronomy","title":"Bumi","content":"Bumi adalah planet ketiga dari Matahari dan satu-satunya planet yang diketahui memiliki kehidupan. Permukaannya memiliki air cair dalam jumlah besar serta atmosfer yang didominasi nitrogen dan oksigen. Bumi memiliki satu satelit alami, Bulan, dan medan magnet yang membantu melindungi permukaan dari sebagian partikel bermuatan dari Matahari."},{"category":"Astronomy","title":"Mars","content":"Mars adalah planet keempat dari Matahari dan sering disebut planet merah karena mineral besi teroksidasi pada permukaannya. Mars memiliki gunung berapi besar, lembah, kawah, serta bukti bahwa air pernah mengalir di permukaannya. Atmosfernya tipis dan didominasi karbon dioksida, sehingga kondisi permukaannya dingin dan kering."},{"category":"Astronomy","title":"Jupiter","content":"Jupiter adalah planet terbesar di Tata Surya dan termasuk raksasa gas. Atmosfernya terdiri terutama dari hidrogen dan helium serta memiliki pita awan dan badai besar, termasuk Great Red Spot. Jupiter memiliki banyak satelit; empat yang terbesar—Io, Europa, Ganymede, dan Callisto—dikenal sebagai satelit Galilea."},{"category":"Astronomy","title":"Saturnus","content":"Saturnus adalah raksasa gas yang terkenal karena sistem cincinnya yang luas. Cincin tersebut tersusun terutama dari partikel es dan batu berukuran beragam. Saturnus memiliki banyak satelit, termasuk Titan yang mempunyai atmosfer tebal dan Enceladus yang menunjukkan aktivitas semburan material dari bawah permukaannya."},{"category":"Astronomy","title":"Uranus","content":"Uranus adalah raksasa es yang atmosfernya banyak mengandung hidrogen, helium, dan metana. Metana menyerap cahaya merah sehingga planet ini tampak kebiruan. Sumbu rotasinya sangat miring, sekitar 98 derajat terhadap bidang orbit, sehingga Uranus mengalami musim yang ekstrem dan berbeda dari kebanyakan planet."},{"category":"Astronomy","title":"Neptunus","content":"Neptunus adalah planet kedelapan dan terjauh dari Matahari. Atmosfernya didominasi hidrogen, helium, dan metana, serta memiliki angin yang sangat cepat. Neptunus ditemukan melalui prediksi matematis berdasarkan gangguan pada orbit Uranus sebelum kemudian diamati dengan teleskop."},{"category":"Astronomy","title":"Planet Kerdil","content":"Planet kerdil adalah benda langit yang mengorbit Matahari dan cukup besar sehingga gravitasinya membuat bentuknya hampir bulat, tetapi belum membersihkan lingkungan orbitnya dari benda-benda lain. Pluto, Ceres, Eris, Haumea, dan Makemake termasuk contoh yang diakui sebagai planet kerdil."},{"category":"Astronomy","title":"Pluto","content":"Pluto adalah planet kerdil di wilayah Sabuk Kuiper. Permukaannya mengandung es nitrogen, metana, dan air, sementara atmosfer tipisnya dapat berubah mengikuti jaraknya dari Matahari. Pluto memiliki lima satelit yang diketahui, dengan Charon sebagai yang terbesar dan berukuran sangat besar dibandingkan Pluto."},{"category":"Astronomy","title":"Bintang","content":"Bintang adalah bola plasma yang terikat gravitasi dan menghasilkan energi terutama melalui reaksi fusi nuklir di intinya. Pada bintang seperti Matahari, hidrogen bergabung menjadi helium dan melepaskan energi. Warna, suhu, massa, dan luminositas bintang membantu astronom mempelajari sifat serta tahap kehidupannya."},{"category":"Astronomy","title":"Siklus Hidup Bintang","content":"Siklus hidup bintang bergantung terutama pada massanya. Bintang terbentuk dari awan gas dan debu, lalu menjalani fase deret utama ketika fusi hidrogen menjadi sumber energi utama. Bintang bermassa rendah dapat berakhir sebagai katai putih, sedangkan bintang masif dapat mengalami supernova dan meninggalkan bintang neutron atau lubang hitam."},{"category":"Astronomy","title":"Matahari","content":"Matahari adalah bintang di pusat Tata Surya dan sumber energi utama bagi Bumi. Energinya berasal dari fusi hidrogen menjadi helium di inti. Matahari memiliki beberapa lapisan, termasuk inti, zona radiasi, zona konveksi, fotosfer, kromosfer, dan korona, serta menunjukkan aktivitas magnetik yang berubah dalam suatu siklus."},{"category":"Astronomy","title":"Fotosfer Matahari","content":"Fotosfer adalah lapisan Matahari yang tampak sebagai permukaan terang ketika Matahari diamati dengan metode yang aman. Suhunya sekitar 5.500 derajat Celsius dan di dalamnya terlihat granulasi akibat gerakan gas panas. Bintik Matahari juga tampak di fotosfer sebagai daerah yang relatif lebih dingin dan gelap."},{"category":"Astronomy","title":"Korona Matahari","content":"Korona adalah atmosfer terluar Matahari yang terlihat jelas saat gerhana Matahari total. Suhunya dapat mencapai jutaan derajat Celsius, jauh lebih panas daripada fotosfer. Korona terus mengalir keluar membentuk angin Matahari dan dipengaruhi kuat oleh medan magnet Matahari yang berubah-ubah."},{"category":"Astronomy","title":"Bintik Matahari","content":"Bintik Matahari adalah daerah yang tampak lebih gelap di fotosfer karena suhunya lebih rendah daripada lingkungan sekitar. Daerah ini berkaitan dengan medan magnet yang kuat. Jumlah bintik berubah mengikuti siklus aktivitas Matahari sekitar 11 tahun dan sering menjadi indikator tingkat aktivitas magnetik Matahari."},{"category":"Astronomy","title":"Angin Matahari","content":"Angin Matahari adalah aliran partikel bermuatan, terutama proton dan elektron, yang terus keluar dari atmosfer Matahari. Aliran ini memenuhi ruang antarplanet dan berinteraksi dengan medan magnet planet. Gangguan kuat pada angin Matahari dapat memicu badai geomagnetik dan meningkatkan peluang munculnya aurora di wilayah tertentu."},{"category":"Astronomy","title":"Bulan","content":"Bulan adalah satelit alami Bumi dan objek langit terdekat dengan planet kita. Permukaannya memiliki kawah, dataran gelap yang disebut maria, serta pegunungan. Bulan tidak menghasilkan cahaya sendiri; bagian yang tampak terang berasal dari cahaya Matahari yang dipantulkan. Gaya gravitasinya juga berperan dalam pasang surut laut."},{"category":"Astronomy","title":"Fase Bulan","content":"Fase Bulan adalah perubahan bentuk bagian Bulan yang tampak terang dari Bumi akibat posisi relatif Matahari, Bumi, dan Bulan. Urutannya meliputi bulan baru, sabit, kuartal pertama, cembung, purnama, lalu kembali mengecil. Satu siklus fase berlangsung sekitar 29,5 hari."},{"category":"Astronomy","title":"Gerhana Bulan","content":"Gerhana Bulan terjadi ketika Bumi berada di antara Matahari dan Bulan sehingga Bulan memasuki bayangan Bumi. Gerhana total terjadi ketika seluruh piringan Bulan masuk ke umbra, sedangkan gerhana sebagian hanya mengenai sebagian permukaan Bulan. Gerhana Bulan hanya dapat terjadi ketika Bulan berada dalam fase purnama dan posisi orbitnya tepat."},{"category":"Astronomy","title":"Gerhana Matahari","content":"Gerhana Matahari terjadi ketika Bulan berada di antara Matahari dan Bumi sehingga bayangan Bulan jatuh ke permukaan Bumi. Gerhana dapat bersifat total, sebagian, atau cincin bergantung pada posisi dan ukuran tampak Bulan. Melihat Matahari secara langsung tanpa pelindung mata yang sesuai dapat merusak penglihatan."},{"category":"Astronomy","title":"Pasang Surut","content":"Pasang surut adalah naik turunnya permukaan laut secara periodik terutama akibat gaya gravitasi Bulan dan Matahari. Rotasi Bumi serta bentuk garis pantai juga memengaruhi pola lokalnya. Ketika Matahari, Bumi, dan Bulan hampir segaris, gaya pasang lebih kuat dan menghasilkan pasang purnama."},{"category":"Astronomy","title":"Galaksi","content":"Galaksi adalah sistem sangat besar yang berisi bintang, gas, debu, materi gelap, dan objek lain yang terikat oleh gravitasi. Galaksi dapat berbentuk spiral, elips, atau tidak beraturan. Bima Sakti adalah galaksi tempat Tata Surya berada, dan galaksi-galaksi dapat berinteraksi atau bergabung dalam skala waktu kosmik."},{"category":"Astronomy","title":"Bima Sakti","content":"Bima Sakti adalah galaksi spiral berbatang tempat Tata Surya berada. Galaksi ini memiliki miliaran bintang dan sebuah lubang hitam supermasif di pusatnya yang disebut Sagittarius A*. Tata Surya berada di salah satu lengan spiral, pada jarak puluhan ribu tahun cahaya dari pusat galaksi."},{"category":"Astronomy","title":"Andromeda","content":"Galaksi Andromeda atau M31 adalah galaksi spiral besar yang merupakan salah satu tetangga utama Bima Sakti. Jaraknya sekitar 2,5 juta tahun cahaya dari Bumi. Andromeda dan Bima Sakti berada dalam Grup Lokal dan saling dipengaruhi gravitasi; keduanya diperkirakan akan berinteraksi besar di masa depan."},{"category":"Astronomy","title":"Nebula","content":"Nebula adalah awan besar gas dan debu di ruang antarbintang. Sebagian nebula menjadi tempat lahirnya bintang baru, sedangkan yang lain merupakan sisa dari bintang yang telah berevolusi. Nebula dapat tampak bercahaya karena gas terionisasi atau terlihat sebagai awan gelap yang menghalangi cahaya dari belakangnya."},{"category":"Astronomy","title":"Nebula Orion","content":"Nebula Orion atau M42 adalah wilayah pembentukan bintang yang sangat terkenal di rasi Orion. Jaraknya sekitar 1.300 tahun cahaya dan dapat diamati dengan mata tanpa alat pada kondisi langit yang gelap. Di dalamnya terdapat gas yang diterangi bintang muda serta gugus bintang Trapezium."},{"category":"Astronomy","title":"Supernova","content":"Supernova adalah ledakan sangat energik yang berkaitan dengan akhir kehidupan bintang tertentu. Supernova dapat terjadi ketika bintang masif runtuh pada akhir evolusinya atau ketika sistem katai putih mengalami ledakan termonuklir. Peristiwa ini menyebarkan unsur berat dan material ke ruang antarbintang."},{"category":"Astronomy","title":"Lubang Hitam","content":"Lubang hitam adalah objek atau wilayah ruang-waktu dengan gravitasi sangat kuat sehingga setelah melewati batas tertentu, cahaya pun tidak dapat keluar. Lubang hitam dapat terbentuk dari keruntuhan bintang masif dan juga tumbuh menjadi supermasif di pusat galaksi. Keberadaannya dipelajari melalui pengaruhnya terhadap materi dan cahaya di sekitarnya."},{"category":"Astronomy","title":"Event Horizon","content":"Event horizon adalah batas pada lubang hitam yang menandai titik tidak dapat kembalinya informasi ke pengamat jauh. Benda yang melewati batas ini tidak dapat mengirim sinyal kembali ke luar. Event horizon bukan permukaan padat, melainkan batas geometris yang muncul dari struktur ruang-waktu di sekitar lubang hitam."},{"category":"Astronomy","title":"Akresi","content":"Akresi adalah proses pengumpulan materi oleh suatu objek akibat gravitasi. Di sekitar objek kompak seperti lubang hitam atau bintang muda, materi dapat membentuk cakram akresi yang berputar dan memanas. Cakram tersebut dapat memancarkan radiasi kuat sehingga menjadi petunjuk penting bagi astronom untuk mendeteksi objek yang sulit diamati langsung."},{"category":"Astronomy","title":"Exoplanet","content":"Exoplanet adalah planet yang mengorbit bintang di luar Tata Surya. Astronom telah menemukan ribuan exoplanet menggunakan metode seperti transit dan kecepatan radial. Ukuran, massa, orbit, dan atmosfernya membantu ilmuwan memahami keragaman sistem planet dan menilai kondisi yang mungkin mendukung kehidupan."},{"category":"Astronomy","title":"Zona Layak Huni","content":"Zona layak huni adalah kisaran jarak dari sebuah bintang tempat kondisi suhu secara teori dapat memungkinkan adanya air cair di permukaan planet, dengan asumsi atmosfer yang sesuai. Batas zona ini bergantung pada sifat bintang dan atmosfer planet. Berada di zona layak huni tidak otomatis berarti sebuah planet dihuni."},{"category":"Astronomy","title":"Transit Exoplanet","content":"Metode transit mendeteksi exoplanet ketika planet melintas di depan bintangnya dari sudut pandang pengamat. Cahaya bintang akan turun sedikit dan berulang secara berkala. Kedalaman dan pola penurunan cahaya dapat membantu memperkirakan ukuran planet, periode orbit, dan dalam beberapa kasus komposisi atmosfernya."},{"category":"Astronomy","title":"Satelit Buatan","content":"Satelit buatan adalah wahana yang ditempatkan manusia ke orbit untuk menjalankan fungsi tertentu. Satelit digunakan untuk komunikasi, navigasi, cuaca, pengamatan Bumi, penelitian, dan pertahanan. Ketinggian serta bentuk orbit dipilih sesuai kebutuhan misi, sehingga tidak semua satelit bergerak pada jenis orbit yang sama."},{"category":"Astronomy","title":"ISS","content":"International Space Station atau ISS adalah laboratorium antariksa yang mengorbit Bumi pada ketinggian rendah. Stasiun ini menjadi tempat penelitian dalam kondisi mikrogravitasi, pengujian teknologi, dan pengamatan Bumi. ISS dibangun melalui kerja sama internasional dan dihuni secara bergantian oleh astronaut dari berbagai negara."},{"category":"Astronomy","title":"Roket","content":"Roket adalah kendaraan yang menghasilkan gaya dorong dengan membuang massa berkecepatan tinggi, sehingga dapat bergerak tanpa membutuhkan udara dari lingkungan. Prinsip ini memungkinkan roket bekerja di ruang hampa. Roket digunakan untuk meluncurkan satelit, wahana antariksa, misi ilmiah, dan membawa manusia ke luar atmosfer."},{"category":"Astronomy","title":"Orbit","content":"Orbit adalah lintasan benda yang bergerak mengelilingi benda lain karena gravitasi. Bentuk orbit bisa mendekati lingkaran atau berbentuk elips. Kecepatan benda dan gravitasi pusat menentukan apakah sebuah benda tetap terikat dalam orbit, berpindah orbit, atau lepas dari pengaruh gravitasi."},{"category":"Astronomy","title":"Kecepatan Cahaya","content":"Kecepatan cahaya di ruang hampa adalah sekitar 299.792 kilometer per detik. Nilai ini menjadi batas fundamental bagi perpindahan informasi menurut relativitas khusus. Cahaya dari Matahari membutuhkan sekitar delapan menit untuk mencapai Bumi, sehingga kita selalu melihat Matahari dalam keadaan beberapa menit yang lalu."},{"category":"Astronomy","title":"Tahun Cahaya","content":"Tahun cahaya adalah satuan jarak, bukan satuan waktu. Satu tahun cahaya adalah jarak yang ditempuh cahaya di ruang hampa selama satu tahun, sekitar 9,46 triliun kilometer. Astronom menggunakannya untuk menyatakan jarak antarbintang dan antargalaksi yang sangat besar."},{"category":"Astronomy","title":"Aurora","content":"Aurora adalah cahaya berwarna yang muncul di atmosfer bagian atas dekat wilayah kutub ketika partikel bermuatan dari Matahari berinteraksi dengan medan magnet dan gas atmosfer Bumi. Energi partikel membuat atom atau molekul tereksitasi, lalu mereka memancarkan cahaya saat kembali ke keadaan energi yang lebih rendah."},{"category":"Astronomy","title":"Hujan Meteor","content":"Hujan meteor terjadi ketika Bumi melewati aliran debu dan pecahan kecil yang ditinggalkan komet atau asteroid. Partikel memasuki atmosfer dengan kecepatan tinggi dan menghasilkan garis cahaya yang disebut meteor. Nama hujan meteor biasanya diambil dari rasi tempat meteor tampak berasal, seperti Perseid dan Geminid."},{"category":"Astronomy","title":"Komet","content":"Komet adalah benda kecil yang kaya es, debu, dan material berbatu. Ketika mendekati Matahari, sebagian es menguap dan membentuk koma serta ekor yang terdorong menjauhi Matahari oleh radiasi dan angin Matahari. Ekor komet tidak selalu berarti berada di belakang arah geraknya."},{"category":"Astronomy","title":"Asteroid","content":"Asteroid adalah benda berbatu atau logam yang mengorbit Matahari dan berukuran lebih kecil daripada planet. Banyak asteroid berada di Sabuk Asteroid antara Mars dan Jupiter, tetapi ada juga yang memiliki orbit lain. Mempelajari asteroid membantu ilmuwan memahami sisa material pembentukan Tata Surya dan menilai potensi bahaya benda dekat Bumi."},{"category":"Astronomy","title":"Sabuk Asteroid","content":"Sabuk Asteroid adalah wilayah di antara orbit Mars dan Jupiter yang berisi banyak benda kecil berbatu dan logam. Gravitasi Jupiter membantu mencegah material di wilayah tersebut bergabung menjadi sebuah planet. Ceres adalah objek terbesar di wilayah ini dan diklasifikasikan sebagai planet kerdil."},{"category":"Astronomy","title":"Sabuk Kuiper","content":"Sabuk Kuiper adalah wilayah dingin di luar orbit Neptunus yang berisi banyak objek kaya es. Pluto merupakan salah satu objek terkenal di wilayah ini. Sabuk Kuiper membantu ilmuwan mempelajari sisa material pembentukan Tata Surya dan merupakan sumber bagi sebagian komet berperiode pendek."},{"category":"Astronomy","title":"Voyager","content":"Voyager 1 dan Voyager 2 adalah wahana antariksa yang diluncurkan pada 1977 untuk mempelajari planet-planet luar. Keduanya melakukan perlintasan dekat dengan beberapa planet dan kemudian melanjutkan perjalanan ke wilayah luar heliosfer. Misi Voyager menunjukkan bagaimana satu wahana dapat terus menghasilkan data ilmiah setelah puluhan tahun."},{"category":"Astronomy","title":"James Webb Space Telescope","content":"James Webb Space Telescope atau JWST adalah teleskop antariksa yang dirancang terutama untuk pengamatan inframerah. Cermin utamanya yang besar dan pelindung Matahari membantu mengumpulkan cahaya redup dari objek jauh. JWST digunakan untuk mempelajari galaksi awal, pembentukan bintang dan planet, serta atmosfer beberapa exoplanet."},{"category":"Astronomy","title":"Teleskop","content":"Teleskop adalah alat yang mengumpulkan dan memfokuskan radiasi elektromagnetik dari objek jauh agar dapat diamati atau dianalisis. Teleskop optik bekerja pada cahaya tampak, sedangkan teleskop radio, inframerah, ultraviolet, dan sinar-X menangkap bagian spektrum lain. Ukuran bukaan dan kondisi pengamatan memengaruhi kemampuan teleskop mengumpulkan cahaya dan memisahkan detail."},{"category":"Technology","title":"Kecerdasan Buatan","content":"Kecerdasan buatan atau AI adalah bidang komputasi yang membuat sistem mampu melakukan tugas seperti mengenali pola, memahami bahasa, membuat prediksi, atau mengambil keputusan berdasarkan data. AI tidak selalu berarti robot; banyak sistem AI bekerja sebagai perangkat lunak. Hasilnya bergantung pada data, model, tujuan, dan cara sistem dievaluasi."},{"category":"Technology","title":"Machine Learning","content":"Machine learning adalah pendekatan AI yang membuat komputer mempelajari pola dari data untuk menghasilkan prediksi atau keputusan, tanpa aturan eksplisit untuk setiap kemungkinan. Contohnya adalah klasifikasi gambar, rekomendasi, dan prediksi nilai. Model perlu dilatih dan diuji dengan data yang sesuai agar kinerjanya dapat diukur."},{"category":"Technology","title":"Deep Learning","content":"Deep learning adalah bagian dari machine learning yang menggunakan jaringan saraf dengan banyak lapisan untuk mempelajari representasi dari data. Metode ini sangat berhasil pada gambar, suara, dan bahasa ketika tersedia data serta daya komputasi yang cukup. Model deep learning tetap memerlukan data berkualitas dan evaluasi yang baik."},{"category":"Technology","title":"Generative AI","content":"Generative AI adalah sistem AI yang dapat menghasilkan konten baru seperti teks, gambar, audio, atau kode berdasarkan pola yang dipelajari dari data pelatihan. Model generatif tidak sekadar mengambil satu dokumen dan menyalinnya; model menghasilkan keluaran berdasarkan representasi statistik yang dipelajari. Hasilnya tetap perlu diperiksa karena dapat mengandung kesalahan."},{"category":"Technology","title":"Computer Vision","content":"Computer vision adalah bidang yang membuat komputer dapat menganalisis informasi visual dari gambar atau video. Tugasnya meliputi klasifikasi gambar, deteksi objek, segmentasi, dan pengenalan pola. Sistem modern sering menggunakan jaringan saraf untuk mempelajari ciri visual dari data berlabel atau metode pembelajaran lainnya."},{"category":"Technology","title":"Natural Language Processing","content":"Natural Language Processing atau NLP adalah bidang yang mempelajari cara komputer memproses bahasa manusia. Penerapannya mencakup penerjemahan mesin, pencarian, analisis teks, pengenalan entitas, dan chatbot. Bahasa manusia memiliki konteks dan ambiguitas sehingga sistem NLP membutuhkan model serta data yang mampu menangani variasi penggunaan bahasa."},{"category":"Technology","title":"Robot","content":"Robot adalah mesin yang dapat melakukan tugas secara otomatis atau semiotomatis melalui kombinasi sensor, aktuator, sistem kendali, dan perangkat lunak. Robot dapat digunakan di pabrik, rumah sakit, penelitian, pertanian, hingga eksplorasi. Tingkat kemandirian robot berbeda-beda; tidak semua robot mampu mengambil keputusan sendiri."},{"category":"Technology","title":"Robot Humanoid","content":"Robot humanoid dirancang dengan bentuk atau gerakan yang menyerupai manusia, misalnya memiliki dua kaki, dua lengan, dan sensor untuk berinteraksi dengan lingkungan. Bentuk ini dapat berguna pada lingkungan yang dibuat untuk manusia, tetapi menjaga keseimbangan dan koordinasi gerak merupakan tantangan teknik yang kompleks."},{"category":"Technology","title":"Robot Industri","content":"Robot industri adalah mesin terprogram yang digunakan untuk pekerjaan berulang dan presisi dalam proses manufaktur. Lengan robot dapat melakukan pengelasan, pengecatan, perakitan, pemindahan benda, dan pemeriksaan. Robot industri biasanya bekerja bersama sistem keselamatan agar manusia dan mesin dapat beroperasi di lingkungan produksi dengan risiko yang terkontrol."},{"category":"Technology","title":"Drone","content":"Drone adalah kendaraan udara tanpa awak yang dapat dikendalikan dari jarak jauh atau menjalankan penerbangan berdasarkan sistem otomatis. Drone menggunakan sensor, pengendali penerbangan, motor, dan baterai untuk menjaga kestabilan. Penggunaannya meliputi pemetaan, fotografi, inspeksi, penelitian, pertanian, dan berbagai kegiatan lain sesuai aturan penerbangan setempat."},{"category":"Technology","title":"Roket Modern","content":"Roket modern menggabungkan mesin pembakaran, tangki propelan, sistem kendali, komputer penerbangan, struktur ringan, dan tahap pemisahan untuk menghasilkan dorongan yang efisien. Perkembangan material dan perangkat lunak meningkatkan kemampuan peluncuran. Beberapa sistem modern juga dirancang agar bagian tertentu dapat digunakan kembali untuk mengurangi biaya misi."},{"category":"Technology","title":"Roket Multistage","content":"Roket multistage terdiri dari dua atau lebih tahap yang bekerja secara berurutan. Ketika propelan sebuah tahap habis, tahap tersebut dapat dilepaskan sehingga massa yang harus didorong berkurang. Prinsip ini meningkatkan efisiensi dan memungkinkan kendaraan mencapai kecepatan yang diperlukan untuk orbit atau perjalanan antariksa."},{"category":"Technology","title":"Pesawat Terbang","content":"Pesawat terbang adalah kendaraan yang menghasilkan gaya angkat dari bentuk dan aliran udara di sekitar sayap. Mesin memberikan gaya dorong, sedangkan ekor dan permukaan kendali membantu mengatur arah serta kestabilan. Pesawat dapat menggunakan baling-baling atau mesin jet dan dirancang untuk berbagai kecepatan, jarak, dan fungsi."},{"category":"Technology","title":"Mesin Jet","content":"Mesin jet menghasilkan dorongan dengan menghisap udara, memampatkannya, mencampurnya dengan bahan bakar untuk pembakaran, lalu mempercepat gas keluar melalui nosel. Pada turbofan modern, sebagian besar dorongan berasal dari aliran udara yang didorong kipas. Mesin jet memungkinkan pesawat terbang dengan efisien pada kecepatan dan ketinggian tertentu."},{"category":"Technology","title":"Pesawat Supersonik","content":"Pesawat supersonik mampu terbang lebih cepat daripada kecepatan suara di udara. Ketika melewati Mach 1, gelombang tekanan bergabung menjadi gelombang kejut yang dapat menghasilkan sonic boom. Desain supersonik harus mengatasi hambatan udara, pemanasan, kebisingan, dan efisiensi bahan bakar."},{"category":"Technology","title":"Helikopter","content":"Helikopter terbang menggunakan rotor yang berputar untuk menghasilkan gaya angkat dan memungkinkan lepas landas serta mendarat secara vertikal. Sudut bilah rotor diatur untuk mengendalikan gaya dan arah gerak. Karena dapat melayang dan bergerak pada area sempit, helikopter berguna untuk penyelamatan, transportasi, pemantauan, dan pekerjaan khusus."},{"category":"Technology","title":"Tiltrotor","content":"Tiltrotor adalah pesawat yang menggunakan rotor atau propeller yang dapat diputar posisinya. Saat lepas landas, rotor diarahkan untuk menghasilkan gaya angkat seperti helikopter; ketika terbang maju, rotor diputar sehingga menghasilkan dorongan seperti pesawat. Desain ini mencoba menggabungkan kemampuan vertikal dengan kecepatan jelajah pesawat."},{"category":"Technology","title":"Kereta Cepat","content":"Kereta cepat adalah sistem kereta yang dirancang untuk melaju jauh lebih cepat daripada kereta konvensional pada jalur khusus atau jalur yang ditingkatkan. Kecepatannya didukung oleh desain aerodinamis, rel presisi, sistem sinyal, dan infrastruktur yang sesuai. Keselamatan sangat bergantung pada sistem kendali dan pemeliharaan jalur."},{"category":"Technology","title":"Maglev","content":"Maglev atau magnetic levitation menggunakan gaya magnet untuk mengangkat dan menggerakkan kereta sehingga kontak mekanis dengan rel dapat dikurangi atau dihilangkan. Hambatan akibat gesekan roda menjadi sangat kecil, tetapi sistem tetap menghadapi hambatan udara dan membutuhkan infrastruktur khusus. Teknologi ini berbeda dari kereta listrik konvensional yang menggunakan roda."},{"category":"Technology","title":"Kereta Listrik","content":"Kereta listrik memperoleh energi dari sistem listrik seperti kabel atas atau rel ketiga, kemudian motor listrik mengubah energi tersebut menjadi gerak. Kereta listrik tidak membawa bahan bakar untuk menggerakkan motor secara langsung. Sistem ini dapat memiliki efisiensi tinggi dan digunakan pada kereta perkotaan, komuter, maupun sebagian jaringan antarkota."},{"category":"Technology","title":"Kapal Laut","content":"Kapal laut adalah kendaraan yang dirancang mengapung dan bergerak di perairan. Lambung menyediakan daya apung, sedangkan mesin atau sistem layar menghasilkan dorongan. Kapal memiliki beragam bentuk sesuai fungsi, mulai dari angkutan penumpang dan barang hingga penelitian, penangkapan ikan, dan layanan khusus."},{"category":"Technology","title":"Kapal Selam","content":"Kapal selam adalah kendaraan yang dapat bergerak di bawah permukaan air dengan mengatur daya apungnya. Tangki ballast diisi atau dikosongkan untuk mengubah jumlah air dan udara di dalam sistem. Kapal selam digunakan untuk penelitian, penyelamatan, pertahanan, dan misi lain yang membutuhkan operasi bawah air."},{"category":"Technology","title":"Kapal Kontainer","content":"Kapal kontainer mengangkut barang dalam kontainer standar yang dapat dipindahkan antara kapal, kereta, dan truk. Standardisasi ukuran kontainer membuat proses bongkar muat lebih cepat dan mempermudah rantai logistik global. Desain kapal mempertimbangkan kapasitas, stabilitas, efisiensi bahan bakar, dan keselamatan muatan."},{"category":"Technology","title":"Mobil Listrik","content":"Mobil listrik menggunakan motor listrik sebagai penggerak dan umumnya memperoleh energi dari baterai yang dapat diisi ulang. Motor listrik dapat memberikan torsi tinggi sejak awal sehingga respons akselerasinya berbeda dari mesin pembakaran. Dampak lingkungan mobil listrik bergantung juga pada sumber listrik dan proses produksi serta daur ulang baterainya."},{"category":"Technology","title":"Mobil Otonom","content":"Mobil otonom menggunakan sensor, komputer, perangkat lunak, dan sistem kendali untuk memahami lingkungan serta melakukan sebagian atau seluruh tugas mengemudi. Kamera, radar, dan pada beberapa sistem lidar dapat digunakan untuk mendeteksi objek. Tingkat otomatisasi berbeda-beda, sehingga kemampuan kendaraan tidak boleh disamakan hanya karena sama-sama disebut otonom."},{"category":"Technology","title":"Rem Regeneratif","content":"Rem regeneratif adalah sistem pada kendaraan listrik atau hibrida yang mengubah sebagian energi gerak menjadi energi listrik saat kendaraan melambat. Motor bekerja sebagai generator dan mengalirkan energi kembali ke baterai. Sistem ini mengurangi energi yang terbuang sebagai panas pada rem gesek, meskipun rem konvensional tetap dibutuhkan."},{"category":"Technology","title":"Komputer","content":"Komputer adalah perangkat elektronik yang memproses data berdasarkan instruksi program. Sistem komputer mencakup perangkat keras seperti prosesor, memori, penyimpanan, dan perangkat input-output, serta perangkat lunak yang mengatur penggunaannya. Komputer dapat digunakan untuk menghitung, berkomunikasi, mengolah media, menjalankan simulasi, dan banyak tugas lainnya."},{"category":"Technology","title":"CPU","content":"CPU atau Central Processing Unit menjalankan instruksi program dan mengoordinasikan banyak operasi komputer. CPU memiliki inti pemrosesan, cache, unit aritmetika, serta bagian pengendali. Kecepatan komputer tidak hanya ditentukan oleh frekuensi CPU, tetapi juga jumlah inti, arsitektur, cache, memori, dan beban kerja."},{"category":"Technology","title":"GPU","content":"GPU atau Graphics Processing Unit dirancang untuk melakukan banyak operasi secara paralel. Awalnya sangat penting untuk grafis komputer, tetapi kini GPU juga digunakan untuk komputasi ilmiah, machine learning, dan pengolahan data. Arsitektur paralelnya membuat GPU cocok untuk jenis perhitungan tertentu yang dapat dibagi menjadi banyak tugas serupa."},{"category":"Technology","title":"RAM","content":"RAM adalah memori kerja sementara yang menyimpan data dan instruksi yang sedang digunakan komputer. RAM bersifat volatil, sehingga isinya hilang ketika daya dimatikan. Kapasitas RAM yang lebih besar dapat membantu menjalankan lebih banyak aplikasi secara bersamaan, tetapi performa juga dipengaruhi oleh kecepatan memori dan kemampuan sistem lainnya."},{"category":"Technology","title":"SSD","content":"SSD atau Solid State Drive adalah perangkat penyimpanan yang menggunakan memori flash tanpa bagian mekanis yang berputar. Dibandingkan hard disk mekanis, SSD umumnya memiliki waktu akses lebih cepat dan lebih tahan terhadap guncangan. SSD tersedia dalam berbagai bentuk dan antarmuka, seperti SATA dan NVMe, dengan karakteristik kecepatan berbeda."},{"category":"Technology","title":"Sistem Operasi","content":"Sistem operasi adalah perangkat lunak inti yang mengelola perangkat keras dan menyediakan lingkungan bagi aplikasi. Sistem operasi menangani proses, memori, penyimpanan, perangkat input-output, keamanan, dan antarmuka pengguna. Contohnya termasuk Windows, Linux, Android, dan sistem operasi lain yang dirancang untuk perangkat berbeda."},{"category":"Technology","title":"Internet","content":"Internet adalah jaringan global yang menghubungkan banyak jaringan komputer menggunakan protokol komunikasi seperti TCP/IP. Data dikirim dalam bentuk paket melalui berbagai perangkat jaringan hingga mencapai tujuan. Web, email, streaming, gim daring, dan banyak layanan digital berjalan di atas infrastruktur internet, tetapi internet dan World Wide Web sebenarnya bukan istilah yang sama."},{"category":"Technology","title":"Cloud Computing","content":"Cloud computing adalah penyediaan sumber daya komputasi melalui jaringan, seperti server, penyimpanan, basis data, dan perangkat lunak. Pengguna dapat memakai sumber daya sesuai kebutuhan tanpa harus mengelola seluruh perangkat keras sendiri. Model layanan umum mencakup IaaS, PaaS, dan SaaS, dengan tingkat pengelolaan yang berbeda."},{"category":"Technology","title":"Smartphone","content":"Smartphone adalah perangkat komputasi portabel yang menggabungkan fungsi telepon dengan sistem operasi, layar sentuh, kamera, sensor, konektivitas internet, dan aplikasi. Di dalamnya terdapat SoC yang menggabungkan beberapa komponen pemrosesan. Kemampuan smartphone bergantung pada perangkat keras, perangkat lunak, konektivitas, serta optimasi sistem."},{"category":"Technology","title":"Layar OLED","content":"OLED atau Organic Light-Emitting Diode menggunakan piksel yang dapat memancarkan cahaya sendiri sehingga tidak membutuhkan lampu latar seperti layar LCD. Teknologi ini dapat menghasilkan warna hitam yang sangat gelap dan kontras tinggi. Karakteristik OLED juga memungkinkan layar tipis, tetapi penggunaan material organik dapat menghadirkan risiko burn-in pada kondisi tertentu."},{"category":"Technology","title":"Kamera Smartphone","content":"Kamera smartphone menggunakan kombinasi sensor gambar, lensa, prosesor sinyal, dan perangkat lunak komputasional untuk menghasilkan foto. Ukuran sensor, bukaan lensa, stabilisasi, dan pemrosesan gambar memengaruhi hasil. Fitur seperti HDR dan mode malam menggabungkan atau mengolah beberapa informasi untuk meningkatkan hasil pada kondisi tertentu."},{"category":"Technology","title":"5G","content":"5G adalah generasi teknologi jaringan seluler yang dirancang untuk meningkatkan kapasitas, kecepatan, dan respons jaringan dibandingkan generasi sebelumnya. Implementasinya dapat menggunakan pita frekuensi berbeda dengan karakteristik jangkauan yang berbeda. Kecepatan nyata pengguna tetap dipengaruhi perangkat, spektrum, kepadatan pengguna, jarak dari pemancar, dan kondisi jaringan."},{"category":"Technology","title":"Baterai Lithium-Ion","content":"Baterai lithium-ion menyimpan energi melalui perpindahan ion litium antara elektroda saat pengisian dan pemakaian. Baterai jenis ini banyak digunakan pada smartphone, laptop, dan kendaraan listrik karena memiliki kepadatan energi yang relatif tinggi. Sistem manajemen baterai membantu memantau suhu, tegangan, dan kondisi pengisian untuk menjaga keamanan dan umur pakai."},{"category":"Technology","title":"Panel Surya","content":"Panel surya fotovoltaik mengubah energi cahaya Matahari menjadi energi listrik menggunakan sel semikonduktor. Ketika foton diserap, pembawa muatan dapat terbentuk dan menghasilkan arus listrik. Daya yang dihasilkan dipengaruhi intensitas cahaya, suhu, orientasi, bayangan, dan karakteristik panel serta sistem elektronik pendukungnya."},{"category":"Technology","title":"Turbin Angin","content":"Turbin angin mengubah energi kinetik angin menjadi energi mekanik pada rotor, lalu generator mengubahnya menjadi energi listrik. Bentuk bilah dirancang agar gaya aerodinamis menghasilkan putaran. Produksi listrik bergantung pada kecepatan angin, ukuran rotor, efisiensi sistem, serta kondisi lokasi pemasangan."},{"category":"Technology","title":"Pembangkit Listrik Tenaga Air","content":"Pembangkit listrik tenaga air menggunakan energi potensial atau kinetik air untuk memutar turbin yang terhubung ke generator. Bendungan dapat menyimpan air dan mengatur aliran, sedangkan sistem aliran sungai memanfaatkan debit alami. Produksi listrik bergantung pada debit air dan perbedaan ketinggian yang tersedia."},{"category":"Technology","title":"Jaringan Listrik","content":"Jaringan listrik adalah sistem yang menghubungkan pembangkit, jaringan transmisi, distribusi, dan konsumen. Tegangan dinaikkan untuk transmisi jarak jauh agar kehilangan energi dapat dikurangi, kemudian diturunkan sebelum listrik digunakan konsumen. Keseimbangan antara pembangkitan dan konsumsi harus dijaga agar frekuensi serta stabilitas jaringan tetap berada dalam batas yang aman."},{"category":"Technology","title":"Jembatan","content":"Jembatan adalah struktur yang dibuat untuk melewatkan jalan, rel, manusia, atau utilitas di atas penghalang seperti sungai dan lembah. Jenisnya mencakup balok, rangka, lengkung, kantilever, dan cable-stayed. Perancang memperhitungkan beban, material, angin, gempa, kelelahan, serta kondisi lingkungan agar struktur aman dan tahan lama."},{"category":"Technology","title":"Terowongan","content":"Terowongan adalah jalur buatan yang melewati bawah tanah, gunung, atau badan air. Pembangunannya dapat menggunakan metode pengeboran, penggalian, atau mesin tunnel boring. Desain terowongan harus mempertimbangkan kondisi batuan atau tanah, ventilasi, drainase, keselamatan kebakaran, dan sistem evakuasi."},{"category":"Technology","title":"Satelit Komunikasi","content":"Satelit komunikasi menerima, memperkuat atau memproses, lalu memancarkan kembali sinyal radio antara lokasi yang berjauhan. Satelit dapat digunakan untuk televisi, telepon, internet, dan komunikasi khusus. Orbit geostasioner sangat berguna untuk layanan tertentu karena satelit tampak relatif tetap di atas satu wilayah, meskipun orbit lain juga digunakan."},{"category":"Technology","title":"GPS","content":"GPS atau Global Positioning System adalah sistem navigasi satelit yang menggunakan sinyal dari satelit untuk membantu penerima menghitung posisi dan waktu. Penerima membandingkan waktu kedatangan sinyal dari beberapa satelit untuk memperkirakan lokasinya. Akurasi dipengaruhi kualitas sinyal, jumlah satelit, kondisi atmosfer, dan lingkungan sekitar."},{"category":"Technology","title":"Radar","content":"Radar menggunakan gelombang radio untuk mendeteksi objek dan memperkirakan jarak, arah, serta dalam sistem tertentu kecepatan objek. Sistem radar memancarkan sinyal dan menganalisis pantulan yang kembali. Radar digunakan dalam cuaca, penerbangan, pelayaran, lalu lintas, pemetaan, dan berbagai aplikasi pengamatan."},{"category":"Technology","title":"Internet of Things","content":"Internet of Things atau IoT adalah konsep menghubungkan perangkat fisik yang memiliki sensor, pemrosesan, dan konektivitas sehingga dapat mengirim atau menerima data. Contohnya mencakup sensor industri, perangkat rumah pintar, dan sistem pemantauan. Keamanan, privasi, interoperabilitas, serta pengelolaan data menjadi bagian penting dari penerapan IoT."},{"category":"Technology","title":"Teknologi Blockchain","content":"Blockchain adalah sistem pencatatan data terdistribusi yang menyusun catatan dalam blok yang saling terhubung menggunakan teknik kriptografi. Banyak implementasi menggunakan mekanisme konsensus agar peserta jaringan menyepakati keadaan catatan. Blockchain dapat digunakan untuk berbagai aplikasi, tetapi desainnya memiliki kompromi dalam hal kecepatan, biaya, desentralisasi, dan keamanan."},{"category":"Science","title":"Metode Ilmiah","content":"Metode ilmiah adalah pendekatan sistematis untuk mempelajari fenomena melalui pengamatan, pertanyaan, hipotesis, pengujian, analisis data, dan penarikan kesimpulan. Tidak semua penelitian mengikuti urutan yang persis sama, tetapi prinsip utamanya adalah bukti dapat diperiksa dan hasil dapat diuji kembali. Pengukuran dan kontrol variabel membantu membuat kesimpulan lebih kuat."},{"category":"Science","title":"Materi","content":"Materi adalah segala sesuatu yang memiliki massa dan menempati ruang. Materi dapat berada dalam keadaan padat, cair, gas, dan plasma, dengan sifat yang berbeda. Perubahan fisika dapat mengubah bentuk atau keadaan tanpa menghasilkan zat baru, sedangkan perubahan kimia menghasilkan zat dengan komposisi dan sifat yang berbeda."},{"category":"Science","title":"Atom","content":"Atom adalah unit dasar suatu unsur yang mempertahankan identitas kimianya. Atom memiliki inti yang berisi proton dan neutron serta elektron yang menempati keadaan kuantum di sekitar inti. Jumlah proton menentukan jenis unsur, sedangkan jumlah neutron dan elektron dapat berbeda sehingga menghasilkan isotop dan ion."},{"category":"Science","title":"Molekul","content":"Molekul adalah partikel yang tersusun dari dua atau lebih atom yang terikat secara kimia dan memiliki susunan tertentu. Molekul dapat terdiri dari atom unsur yang sama seperti O2 atau unsur berbeda seperti H2O. Bentuk dan ikatan dalam molekul memengaruhi sifat fisik serta kimianya."},{"category":"Science","title":"Unsur","content":"Unsur adalah zat yang tersusun dari atom-atom dengan jumlah proton yang sama. Setiap unsur memiliki nomor atom khas, seperti hidrogen dengan satu proton dan karbon dengan enam proton. Unsur tidak dapat diuraikan menjadi zat yang lebih sederhana melalui reaksi kimia biasa."},{"category":"Science","title":"Senyawa","content":"Senyawa adalah zat yang terbentuk ketika dua atau lebih unsur bergabung secara kimia dalam perbandingan tertentu. Air, misalnya, tersusun dari hidrogen dan oksigen. Sifat senyawa dapat sangat berbeda dari sifat unsur penyusunnya, dan senyawa dapat diuraikan melalui proses kimia tertentu."},{"category":"Science","title":"Tabel Periodik","content":"Tabel periodik menyusun unsur berdasarkan nomor atom dan pola sifat kimianya. Baris disebut periode, sedangkan kolom disebut golongan atau grup. Unsur dalam satu golongan sering memiliki pola elektron valensi yang serupa sehingga menunjukkan kemiripan sifat kimia tertentu."},{"category":"Science","title":"Ikatan Ion","content":"Ikatan ion adalah gaya tarik elektrostatik antara ion bermuatan berlawanan, biasanya terbentuk setelah satu atom melepaskan elektron dan atom lain menerimanya. Senyawa ionik seperti natrium klorida membentuk susunan kristal. Banyak senyawa ionik memiliki titik leleh tinggi dan dapat menghantarkan listrik ketika dalam keadaan cair atau larutan."},{"category":"Science","title":"Ikatan Kovalen","content":"Ikatan kovalen terbentuk ketika atom berbagi pasangan elektron. Ikatan ini umum terjadi antara atom nonlogam dan dapat menghasilkan molekul atau struktur jaringan yang besar. Jumlah serta susunan pasangan elektron memengaruhi bentuk molekul dan sifatnya, seperti polaritas dan kekuatan ikatan."},{"category":"Science","title":"Reaksi Kimia","content":"Reaksi kimia adalah proses ketika atom-atom dalam zat pereaksi tersusun ulang menjadi zat baru. Dalam reaksi, atom tidak diciptakan atau dimusnahkan sehingga persamaan kimia harus mengikuti hukum kekekalan massa. Reaksi dapat melibatkan pelepasan atau penyerapan energi serta perubahan warna, suhu, gas, atau terbentuknya endapan."},{"category":"Science","title":"Gaya","content":"Gaya adalah interaksi yang dapat mengubah gerak atau bentuk suatu benda. Gaya merupakan besaran vektor, sehingga memiliki besar dan arah. Contohnya meliputi gaya gravitasi, gesek, normal, tegangan, dan gaya listrik. Percepatan benda ditentukan oleh resultan gaya yang bekerja padanya."},{"category":"Science","title":"Hukum Newton","content":"Tiga hukum Newton menjelaskan hubungan antara gaya dan gerak. Hukum pertama membahas kecenderungan benda mempertahankan keadaan geraknya, hukum kedua menghubungkan resultan gaya dengan massa dan percepatan, sedangkan hukum ketiga menjelaskan pasangan gaya pada interaksi dua benda. Ketiganya menjadi dasar mekanika klasik."},{"category":"Science","title":"Energi","content":"Energi adalah kemampuan suatu sistem untuk melakukan kerja atau menyebabkan perubahan. Bentuk energi meliputi kinetik, potensial, termal, kimia, listrik, dan lainnya. Energi dapat berpindah atau berubah bentuk; prinsip kekekalan energi menyatakan bahwa total energi dalam sistem terisolasi tetap."},{"category":"Science","title":"Energi Kinetik","content":"Energi kinetik adalah energi yang dimiliki benda karena geraknya. Untuk benda bermassa m yang bergerak dengan kelajuan v dalam mekanika klasik, energi kinetiknya dirumuskan sebagai Ek = 1/2 mv². Karena bergantung pada kuadrat kelajuan, perubahan kecepatan dapat menghasilkan perubahan energi kinetik yang besar."},{"category":"Science","title":"Energi Potensial","content":"Energi potensial adalah energi yang berkaitan dengan posisi atau konfigurasi suatu sistem. Contohnya energi potensial gravitasi yang bergantung pada posisi benda dalam medan gravitasi dan energi potensial pegas yang bergantung pada perubahan panjang pegas. Nilai energi potensial bergantung pada titik acuan yang dipilih."},{"category":"Science","title":"Momentum","content":"Momentum adalah besaran yang menggambarkan kuantitas gerak suatu benda dan secara klasik dirumuskan p = mv. Momentum memiliki arah yang sama dengan kecepatan. Dalam sistem tertutup dengan resultan gaya eksternal yang dapat diabaikan, jumlah momentum total sebelum dan sesudah interaksi tetap."},{"category":"Science","title":"Gelombang","content":"Gelombang adalah gangguan yang merambat dan membawa energi dari satu tempat ke tempat lain. Gelombang dapat berupa mekanik yang membutuhkan medium atau elektromagnetik yang dapat merambat di ruang hampa. Besaran pentingnya meliputi amplitudo, panjang gelombang, frekuensi, periode, dan cepat rambat."},{"category":"Science","title":"Bunyi","content":"Bunyi adalah gelombang mekanik yang dihasilkan oleh getaran dan merambat melalui medium seperti udara, air, atau benda padat. Frekuensi menentukan tinggi nada, sedangkan amplitudo berkaitan dengan intensitas bunyi. Bunyi tidak dapat merambat di ruang hampa karena tidak ada medium untuk meneruskan getaran."},{"category":"Science","title":"Cahaya","content":"Cahaya adalah radiasi elektromagnetik yang dapat dideteksi mata manusia pada bagian spektrum tertentu. Cahaya dapat mengalami pemantulan, pembiasan, difraksi, interferensi, dan polarisasi. Di ruang hampa, cahaya merambat dengan kecepatan sekitar 299.792 kilometer per detik."},{"category":"Science","title":"Listrik","content":"Listrik berkaitan dengan keberadaan dan pergerakan muatan listrik. Arus adalah laju aliran muatan, tegangan adalah perbedaan potensial, dan hambatan menunjukkan seberapa sulit arus mengalir pada kondisi tertentu. Hubungan dasar pada rangkaian sederhana dinyatakan oleh hukum Ohm, V = IR."},{"category":"Science","title":"Magnet","content":"Magnet menghasilkan medan magnet yang dapat memengaruhi bahan tertentu dan muatan bergerak. Setiap magnet memiliki kutub utara dan selatan; kutub sejenis saling menolak dan kutub berbeda saling menarik. Arus listrik juga dapat menghasilkan medan magnet, yang menjadi dasar kerja elektromagnet dan banyak motor listrik."},{"category":"Science","title":"Suhu","content":"Suhu adalah ukuran yang berkaitan dengan energi kinetik rata-rata partikel dalam suatu sistem. Suhu dapat dinyatakan dalam Celsius, Kelvin, atau Fahrenheit. Berbeda dari kalor, suhu bukan jumlah energi yang berpindah; kalor adalah energi yang berpindah akibat perbedaan suhu."},{"category":"Science","title":"Tekanan","content":"Tekanan adalah gaya yang bekerja tegak lurus per satuan luas, dirumuskan P = F/A. Pada fluida, tekanan dapat berubah menurut kedalaman dan kepadatan. Tekanan gas berkaitan dengan tumbukan partikel terhadap dinding wadah dan dipengaruhi oleh suhu, volume, serta jumlah partikel."},{"category":"Science","title":"Gravitasi","content":"Gravitasi adalah interaksi yang membuat benda bermassa saling tarik-menarik. Di dekat permukaan Bumi, percepatan gravitasi rata-rata sekitar 9,8 m/s², meskipun nilainya sedikit berbeda menurut lokasi. Gravitasi menjaga Bulan mengorbit Bumi, planet mengorbit Matahari, dan memengaruhi gerak benda sehari-hari."},{"category":"Science","title":"Sel","content":"Sel adalah unit struktural dan fungsional dasar kehidupan. Sel dapat berupa prokariotik yang tidak memiliki inti bermembran atau eukariotik yang memiliki inti dan berbagai organel. Membran sel mengatur pertukaran zat, sedangkan organel seperti ribosom, mitokondria, dan kloroplas memiliki fungsi khusus pada tipe sel tertentu."},{"category":"Science","title":"DNA","content":"DNA atau deoxyribonucleic acid adalah molekul yang menyimpan informasi genetik pada hampir semua organisme. DNA tersusun dari nukleotida dengan basa A, T, C, dan G serta memiliki struktur heliks ganda. Urutan basanya menjadi informasi yang dapat digunakan sel untuk mengatur pembuatan RNA dan protein."},{"category":"Science","title":"Gen","content":"Gen adalah bagian dari materi genetik yang mengandung informasi fungsional tertentu, biasanya berupa instruksi untuk menghasilkan RNA atau berkontribusi pada sifat biologis. Gen berada pada DNA dan tersusun di dalam kromosom. Ekspresi gen dapat dipengaruhi oleh jenis sel, tahap perkembangan, dan lingkungan."},{"category":"Science","title":"Kromosom","content":"Kromosom adalah struktur yang tersusun dari DNA dan protein, terutama histon, yang membantu mengemas materi genetik di dalam sel. Pada manusia terdapat 23 pasang kromosom pada sebagian besar sel tubuh. Kromosom membantu memastikan DNA dapat disalin dan dibagikan secara teratur saat pembelahan sel."},{"category":"Science","title":"Fotosintesis","content":"Fotosintesis adalah proses ketika tumbuhan, alga, dan beberapa mikroorganisme menggunakan energi cahaya untuk membentuk senyawa organik dari karbon dioksida dan air. Pada tumbuhan, proses ini berlangsung terutama di kloroplas dengan bantuan klorofil. Oksigen dilepaskan sebagai salah satu hasil dari pemecahan air pada reaksi terang."},{"category":"Science","title":"Respirasi Sel","content":"Respirasi sel adalah rangkaian proses yang digunakan sel untuk memperoleh energi yang dapat dipakai dari molekul seperti glukosa. Pada respirasi aerob, oksigen berperan sebagai akseptor elektron terakhir dan banyak ATP dihasilkan melalui proses di mitokondria. Tahapannya melibatkan glikolisis, siklus asam sitrat, dan fosforilasi oksidatif."},{"category":"Science","title":"Jaringan","content":"Jaringan adalah kumpulan sel yang memiliki struktur dan fungsi yang saling berkaitan. Pada hewan terdapat jaringan epitel, ikat, otot, dan saraf. Pada tumbuhan terdapat jaringan seperti meristem, epidermis, parenkim, xilem, dan floem. Organ tersusun dari beberapa jaringan yang bekerja bersama."},{"category":"Science","title":"Organ","content":"Organ adalah struktur biologis yang tersusun dari beberapa jenis jaringan dan menjalankan fungsi tertentu. Pada manusia, misalnya, jantung tersusun dari jaringan yang bekerja untuk memompa darah. Organ tumbuhan seperti akar, batang, dan daun juga memiliki jaringan yang bekerja bersama untuk mendukung kehidupan tumbuhan."},{"category":"Science","title":"Sistem Pencernaan","content":"Sistem pencernaan memecah makanan menjadi molekul yang lebih kecil agar dapat diserap dan digunakan tubuh. Prosesnya melibatkan mulut, kerongkongan, lambung, usus halus, usus besar, serta organ pendukung seperti hati dan pankreas. Enzim, asam, gerakan otot, dan mikroorganisme usus berperan dalam proses tersebut."},{"category":"Science","title":"Sistem Pernapasan","content":"Sistem pernapasan memasukkan oksigen dan membantu mengeluarkan karbon dioksida. Pada manusia, udara melewati hidung atau mulut, faring, laring, trakea, bronkus, dan bronkiolus hingga mencapai alveolus. Pertukaran gas terjadi melalui dinding alveolus dan kapiler darah karena perbedaan tekanan parsial gas."},{"category":"Science","title":"Ekosistem","content":"Ekosistem adalah kesatuan antara komunitas makhluk hidup dan lingkungan fisiknya yang saling berinteraksi. Komponennya mencakup faktor biotik seperti tumbuhan, hewan, dan mikroorganisme serta faktor abiotik seperti air, cahaya, suhu, dan tanah. Energi mengalir melalui tingkat trofik, sedangkan materi berputar melalui berbagai siklus."},{"category":"Science","title":"Rantai Makanan","content":"Rantai makanan menggambarkan perpindahan energi dan materi ketika satu organisme memakan organisme lain. Umumnya dimulai dari produsen, kemudian konsumen tingkat pertama dan tingkat berikutnya, serta diakhiri oleh pengurai dalam proses daur materi. Dalam ekosistem nyata, banyak rantai makanan saling terhubung membentuk jaring-jaring makanan."},{"category":"Science","title":"Keanekaragaman Hayati","content":"Keanekaragaman hayati adalah variasi kehidupan pada tingkat gen, spesies, dan ekosistem. Keanekaragaman membantu ekosistem berfungsi dan menyediakan sumber pangan, obat, bahan, serta jasa lingkungan. Hilangnya habitat, perubahan lingkungan, eksploitasi berlebihan, dan spesies invasif dapat mengurangi keanekaragaman."},{"category":"Science","title":"Evolusi","content":"Evolusi adalah perubahan sifat genetik populasi dari generasi ke generasi. Mekanisme yang berperan antara lain seleksi alam, mutasi, aliran gen, dan hanyutan genetik. Dalam jangka panjang, perubahan yang terakumulasi dapat menghasilkan perbedaan besar dan berkontribusi pada terbentuknya spesies baru."},{"category":"Science","title":"Mikroorganisme","content":"Mikroorganisme adalah organisme atau agen biologis yang umumnya terlalu kecil untuk dilihat dengan mata tanpa alat bantu. Bakteri, sebagian jamur, protozoa, dan banyak alga termasuk mikroorganisme, sementara virus biasanya dibahas sebagai entitas aseluler. Mikroorganisme dapat bermanfaat dalam fermentasi dan ekosistem, tetapi sebagian juga menyebabkan penyakit."},{"category":"Science","title":"Air","content":"Air adalah senyawa H2O yang sangat penting bagi kehidupan. Molekul air bersifat polar sehingga mampu melarutkan banyak zat dan memiliki kapasitas panas yang tinggi. Di Bumi, air ditemukan dalam bentuk cair, padat, dan gas serta terus bergerak melalui siklus air antara atmosfer, daratan, laut, dan makhluk hidup."},{"category":"Science","title":"Siklus Air","content":"Siklus air menggambarkan pergerakan air secara terus-menerus antara permukaan Bumi dan atmosfer. Proses pentingnya meliputi evaporasi, transpirasi, kondensasi, presipitasi, infiltrasi, dan aliran permukaan. Energi Matahari menjadi penggerak utama siklus ini, sedangkan gravitasi membantu air kembali menuju tempat yang lebih rendah."},{"category":"Science","title":"Atmosfer","content":"Atmosfer adalah lapisan gas yang mengelilingi Bumi dan dipertahankan oleh gravitasi. Komposisinya didominasi nitrogen dan oksigen, dengan sejumlah kecil gas lain seperti argon, karbon dioksida, dan uap air. Atmosfer membantu mengatur suhu, menyediakan gas penting bagi kehidupan, dan melindungi permukaan dari sebagian radiasi serta meteoroid kecil."},{"category":"Science","title":"Cuaca","content":"Cuaca adalah kondisi atmosfer pada tempat dan waktu tertentu, misalnya suhu, tekanan, kelembapan, angin, awan, dan curah hujan. Cuaca dapat berubah dalam hitungan menit hingga hari. Pengamatan cuaca menggunakan stasiun darat, radar, satelit, balon cuaca, dan instrumen lainnya untuk menghasilkan prakiraan."},{"category":"Science","title":"Iklim","content":"Iklim menggambarkan pola statistik kondisi atmosfer dalam jangka panjang di suatu wilayah atau Bumi secara keseluruhan. Iklim berbeda dari cuaca yang menggambarkan kondisi sesaat. Faktor seperti radiasi Matahari, sirkulasi atmosfer dan laut, topografi, serta komposisi atmosfer memengaruhi sistem iklim."},{"category":"Science","title":"Gempa Bumi","content":"Gempa Bumi adalah getaran permukaan akibat pelepasan energi di dalam Bumi, sering kali karena pergerakan patahan yang berkaitan dengan tektonik lempeng. Gelombang seismik membawa energi dari sumber gempa. Besar gempa dan dampaknya dapat dinyatakan dengan ukuran berbeda; dampak di permukaan juga dipengaruhi jarak, kedalaman, kondisi tanah, dan kualitas bangunan."},{"category":"Science","title":"Gunung Api","content":"Gunung api adalah struktur atau tempat keluarnya magma, gas, dan material vulkanik dari bagian dalam Bumi ke permukaan. Erupsi dapat menghasilkan lava, abu, gas, dan material lain. Aktivitas gunung api berkaitan dengan proses tektonik dan pergerakan magma di bawah permukaan."},{"category":"Science","title":"Batuan","content":"Batuan adalah material padat alami yang tersusun dari satu atau lebih mineral atau bahan mineraloid. Batuan utama dibagi menjadi beku, sedimen, dan metamorf berdasarkan proses pembentukannya. Ketiga kelompok tersebut dapat berubah satu sama lain melalui proses dalam siklus batuan, seperti peleburan, pelapukan, pengendapan, dan metamorfisme."},{"category":"Science","title":"Siklus Karbon","content":"Siklus karbon menggambarkan perpindahan karbon antara atmosfer, biosfer, hidrosfer, dan geosfer. Fotosintesis mengambil karbon dioksida dari atmosfer, sedangkan respirasi dan penguraian mengembalikannya. Pembakaran bahan bakar fosil dan perubahan penggunaan lahan dapat meningkatkan perpindahan karbon ke atmosfer dalam waktu relatif singkat."},{"category":"Science","title":"Energi Terbarukan","content":"Energi terbarukan berasal dari sumber yang secara alami terus tersedia atau dapat dipulihkan pada skala waktu manusia, seperti Matahari, angin, air, panas bumi, dan biomassa. Teknologi ini dapat mengurangi penggunaan bahan bakar fosil, tetapi tetap memiliki tantangan seperti variabilitas sumber, kebutuhan penyimpanan, penggunaan lahan, dan pembangunan jaringan."},{"category":"Science","title":"Perubahan Iklim","content":"Perubahan iklim adalah perubahan jangka panjang pada pola iklim Bumi. Aktivitas manusia, terutama peningkatan konsentrasi gas rumah kaca dari pembakaran bahan bakar fosil dan perubahan penggunaan lahan, menjadi pendorong utama pemanasan global saat ini. Dampaknya mencakup perubahan suhu, pola hujan, es, permukaan laut, dan berbagai ekosistem."}];
+
+let activeFilter = "All";
+
+const searchInput = document.getElementById("materialSearch");
+const materialGrid = document.getElementById("materialGrid");
+const materialCount = document.getElementById("materialCount");
+const materialModal = document.getElementById("materialModal");
+const closeMaterial = document.getElementById("closeMaterial");
+const modalCat = document.getElementById("modalCat");
+const modalTitle = document.getElementById("modalTitle");
+const modalBody = document.getElementById("modalBody");
+
+function getFilteredMaterials() {
+  const query = searchInput.value.trim().toLowerCase();
+  return materials.filter(material => {
+    const categoryMatch = activeFilter === "All" || material.category === activeFilter;
+    const searchMatch = !query ||
+      material.title.toLowerCase().includes(query) ||
+      material.content.toLowerCase().includes(query);
+    return categoryMatch && searchMatch;
+  });
+}
+
+function openMaterial(material) {
+  modalCat.textContent = material.category;
+  modalTitle.textContent = material.title;
+  modalBody.innerHTML = "";
+  material.content.split("\n\n").forEach(paragraph => {
+    const p = document.createElement("p");
+    p.textContent = paragraph;
+    modalBody.appendChild(p);
+  });
+  materialModal.classList.add("show");
+  document.body.style.overflow = "hidden";
+}
+
+function closeModal() {
+  materialModal.classList.remove("show");
+  document.body.style.overflow = "";
+}
+
+function renderMaterials() {
+  const data = getFilteredMaterials();
+  materialCount.textContent = `${data.length} dari ${materials.length} materi ditampilkan`;
+
+  if (!data.length) {
+    materialGrid.innerHTML = '<div class="material-empty">Materi yang kamu cari tidak ditemukan.</div>';
+    return;
+  }
+
+  materialGrid.innerHTML = data.map((material, index) => {
+    const shortDescription = material.content.split("\n\n")[0];
+    return `
+      <article class="material-item" data-index="${index}" tabindex="0" role="button" aria-label="Baca materi ${material.title}">
+        <small>${material.category}</small>
+        <h3>${material.title}</h3>
+        <p>${shortDescription}</p>
+        <span class="material-read">Baca materi →</span>
+      </article>
+    `;
+  }).join("");
+
+  materialGrid.querySelectorAll(".material-item").forEach((card, index) => {
+    const material = data[index];
+    card.addEventListener("click", () => openMaterial(material));
+    card.addEventListener("keydown", event => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openMaterial(material);
+      }
+    });
+  });
+}
+
+document.querySelectorAll(".filter-btn").forEach(button => {
+  button.addEventListener("click", () => {
+    document.querySelectorAll(".filter-btn").forEach(item => item.classList.remove("active"));
+    button.classList.add("active");
+    activeFilter = button.dataset.filter;
+    renderMaterials();
+  });
+});
+
+searchInput.addEventListener("input", renderMaterials);
+closeMaterial.addEventListener("click", closeModal);
+
+materialModal.addEventListener("click", event => {
+  if (event.target === materialModal) closeModal();
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape" && materialModal.classList.contains("show")) closeModal();
+});
+
+renderMaterials();
+</script>
+</body>
+</html>
